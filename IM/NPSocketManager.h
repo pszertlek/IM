@@ -10,4 +10,12 @@
 
 @interface NPSocketManager : NSObject
 
++ (instancetype)shared;
+
+- (void)connect;
+
+- (void)disconnect;
+
+- (void)sendMsg:(NSString *)msg;
+
 @end

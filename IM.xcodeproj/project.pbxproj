@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		183CDB416CBC6BF3CF20A073 /* Pods_IM.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB08058CB891BDC043D0111A /* Pods_IM.framework */; };
+		18A855931FE257E7005F6C89 /* test.js in Resources */ = {isa = PBXBuildFile; fileRef = 18A855921FE257E7005F6C89 /* test.js */; };
+		18B9E0E21FECB2D700816FC1 /* FayeClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B9E0E11FECB2D700816FC1 /* FayeClient.swift */; };
 		18C8CE4F1FDF74AD009E2895 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C8CE4E1FDF74AD009E2895 /* AppDelegate.swift */; };
 		18C8CE511FDF74AD009E2895 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C8CE501FDF74AD009E2895 /* ViewController.swift */; };
 		18C8CE541FDF74AD009E2895 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18C8CE521FDF74AD009E2895 /* Main.storyboard */; };
@@ -30,6 +32,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		18A855921FE257E7005F6C89 /* test.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = test.js; sourceTree = "<group>"; };
+		18B9E0E11FECB2D700816FC1 /* FayeClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FayeClient.swift; sourceTree = "<group>"; };
 		18C8CE4B1FDF74AD009E2895 /* IM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IM.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		18C8CE4E1FDF74AD009E2895 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		18C8CE501FDF74AD009E2895 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -107,6 +111,8 @@
 				18C8CE6F1FDF767B009E2895 /* TYHSocketManager */,
 				18C8CE4E1FDF74AD009E2895 /* AppDelegate.swift */,
 				18C8CE501FDF74AD009E2895 /* ViewController.swift */,
+				18B9E0E11FECB2D700816FC1 /* FayeClient.swift */,
+				18A855921FE257E7005F6C89 /* test.js */,
 				18C8CE521FDF74AD009E2895 /* Main.storyboard */,
 				18C8CE551FDF74AD009E2895 /* Assets.xcassets */,
 				18C8CE571FDF74AD009E2895 /* LaunchScreen.storyboard */,
@@ -238,6 +244,7 @@
 			files = (
 				18C8CE591FDF74AD009E2895 /* LaunchScreen.storyboard in Resources */,
 				18C8CE561FDF74AD009E2895 /* Assets.xcassets in Resources */,
+				18A855931FE257E7005F6C89 /* test.js in Resources */,
 				18C8CE541FDF74AD009E2895 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -363,6 +370,7 @@
 				18C8CE511FDF74AD009E2895 /* ViewController.swift in Sources */,
 				18C8CE711FDF76B2009E2895 /* PNSocketManager.swift in Sources */,
 				18C8CE751FDF845B009E2895 /* NPSocketManager.m in Sources */,
+				18B9E0E21FECB2D700816FC1 /* FayeClient.swift in Sources */,
 				18C8CE4F1FDF74AD009E2895 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

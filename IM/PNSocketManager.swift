@@ -47,8 +47,6 @@ class PNSocketManager: NSObject {
         sAddr.sin_family = sa_family_t(AF_INET)
         inet_aton(serverIP, &sAddr.sin_addr)
 //        sAddr.sin_port = htons()
-        if connect() {
-            <#code#>
-        }
+        return 0
     }
 }
