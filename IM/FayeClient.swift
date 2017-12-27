@@ -81,6 +81,9 @@ extension FayeClient {
     }
 }
 
+// MARK: - Public methods
+
+
 extension FayeClient {
     public func setExtension(extension: [String: AnyObject], forChannel channel: String) {
         channelExtensions[channel] = `extension` as AnyObject
@@ -92,13 +95,54 @@ extension FayeClient {
     
     public func sendMessage(message: [String: AnyObject],toChannel channel: String) {
         let messageID = generateUniqueMessageID()
-        sendBayeuxPublishMessage(message, withMessageUniqueID: messageID, toChannel: channel, usingExtension: nil)
+        sendBayeuxPublishMessage(messageInfo: message, withMessageUniqueID: messageID, toChannel: channel, usingExtension: nil)
     }
     
     public func sendMessage(message: [String: AnyObject],toChannel channel: String, usingExtensioin extension: [String: AnyObject]?) {
-        let message = generateUniqueMessageID()
+        let messageID = generateUniqueMessageID()
+        sendBayeuxPublishMessage(messageInfo: message, withMessageUniqueID: messageID, toChannel: channel, usingExtension: `extension`)
+    }
+    
+    public func sendMessage(message: [String: AnyObject], toChannel channel: String, usingExtension extension: [String: AnyObject]?, usingBlock subscriptionHandler:@escaping FayeClientPrivateHandler) {
+        let messageID = generateUniqueMessageID()
+        privateChannels[messageID] = subscriptionHandler
+        sendBayeuxPublishMessage(messageInfo: message, withMessageUniqueID: messageID, toChannel: channel, usingExtension: `extension`)
+    }
+    
+    public func connectToURL(serverURL: NSURL) -> Bool {
+        if isConnected || isWebSocketOpen {
+            return false
+        }
+        self.serverURL = serverURL
+        return connect()
+    }
+    
+    public func connect() -> Bool {
+        if isConnected || isWebSocketOpen {
+            return false
+        }
         
+        connectToWebSocket()
+        return true
+    }
+    
+    public func disconnect() {
+        sendBayeuxDisconnectMessage()
+    }
+    
+    public func subscribeToChannel(_ channel: String) {
         
+    }
+    
+    public func subscribeToChannel(channel: String, usingBlock subscriptionHandler: FayeClientSubscriptionHandler?) {
+        if let subscriptionHandler = subscriptionHandler {
+            subscripbedChannels[channel] = subscriptionHandler
+        } else {
+            subscripbedChannels.removeValue(forKey: channel)
+        }
+        if isConnected {
+            sendBayeuxSubscribeMessageWithChannel(channel: channel)
+        }
     }
 }
 
@@ -130,6 +174,9 @@ private let FayeClientBayeuxMessageConnectionTypeKey = "connectionType"
 
 private let FayeClientWebSocketErrorDomain = "com.nixWork.FayeClient.Error"
 
+// MARK: - Bayeux procotol messages
+
+
 extension FayeClient {
     func sendBayeuxHandshakeMessage() {
         let supportedConectionTypes: [String] = [FayeClientBayeuxConnectionTypeLongPolling, FayeClientBayeuxConnectionTypeCallbackPolling, FayeClientBayeuxConnectionTypeIFrame, FayeClientBayeuxConnectionTypeWebSocket,
@@ -148,13 +195,142 @@ extension FayeClient {
     
     func sendBayeuxConnectMessage() {
         guard let clientID = clientID else {
-            
+            didFailWithMessage(message: "FayeClient no clientID.")
+            return
         }
+        var message: [String: AnyObject] = [
+            FayeClientBayeuxMessageChannelKey: FayeClientBayeuxChannelConnect as AnyObject,
+            FayeClientBayeuxMessageClientIdKey: clientID as AnyObject,
+            FayeClientBayeuxMessageConnectionTypeKey: FayeClientBayeuxConnectionTypeWebSocket as AnyObject,
+            ]
+        if let `extension` = channelExtensions["connect"] {
+            message[FayeClientBayeuxMessageExtensionKey] = `extension`
+        }
+        writeMessage(message)
+    }
+    
+    func sendBayeuxDisconnectMessage() {
+        guard let clientID = clientID else {
+            didFailWithMessage(message: "FayeClient no clientID.")
+            return
+        }
+        let message: [String: AnyObject] = [
+            FayeClientBayeuxMessageChannelKey: FayeClientBayeuxChannelDisconnect as AnyObject,
+            FayeClientBayeuxMessageClientIdKey: clientID as AnyObject,
+            ]
+        writeMessage(message)
+        
+    }
+    
+    func sendBayeuxSubscribeMessageWithChannel(channel:String) {
+        guard let clientID = clientID else {
+            didFailWithMessage(message: "FayeClient no clientID.")
+            return
+        }
+        var message: [String: AnyObject] = [
+            FayeClientBayeuxMessageChannelKey: FayeClientBayeuxChannelSubscribe as AnyObject,
+            FayeClientBayeuxMessageClientIdKey: clientID as AnyObject,
+            FayeClientBayeuxMessageSubscriptionKey: channel as AnyObject,
+            ]
+        if let `extension` = channelExtensions[channel] {
+            message[FayeClientBayeuxMessageExtensionKey] = `extension`
+        }
+        writeMessage(message) { [weak self] (finish) in
+            if finish {
+                self?.pendingChannelSubscriptionSet.insert(channel)
+            }
+        }
+    }
+    
+    func sendBayeuxUnsubscribeMessageWithChannel(channel: String) {
+        guard let clientID = clientID else {
+            didFailWithMessage(message: "FayeClient no clientID.")
+            return
+        }
+        let message: [String: AnyObject] = [
+            FayeClientBayeuxMessageChannelKey: FayeClientBayeuxChannelUnsubscribe as AnyObject,
+            FayeClientBayeuxMessageClientIdKey: clientID as AnyObject,
+            FayeClientBayeuxMessageSubscriptionKey: channel as AnyObject,
+            ]
+        writeMessage(message)
+    }
+    
+    func sendBayeuxPublishMessage(messageInfo: [String:AnyObject], withMessageUniqueID message:String, toChannel channel:String, usingExtension extension:[String: AnyObject]?) {
+        guard isConnected && isWebSocketOpen else {
+            didFailWithMessage(message: "FayeClient no connected to server.")
+            return
+        }
+        guard let clientID = clientID else {
+            didFailWithMessage(message: "FayeClient no ClientID.")
+            return
+        }
+        var message: [String: AnyObject] = [
+            FayeClientBayeuxMessageChannelKey: channel as AnyObject,
+            FayeClientBayeuxMessageClientIdKey: clientID as AnyObject,
+            FayeClientBayeuxMessageDataKey: messageInfo as AnyObject,
+            FayeClientBayeuxMessageIdKey: message as AnyObject,
+            ]
+        if let `extension` = `extension` {
+            message[FayeClientBayeuxMessageExtensionKey] = `extension` as AnyObject
+            
+        } else {
+            if let `extension` = channelExtensions[channel] {
+                message[FayeClientBayeuxMessageExtensionKey] = `extension`
+            }
+        }
+        
+        writeMessage(message)
+    }
+    
+    func clearSubscriptions() {
+        pendingChannelSubscriptionSet.removeAll()
+        openChannelSubscriptionSet.removeAll()
     }
 }
 
+// MARK: - Private methods
+
+
 extension FayeClient {
-    func writeMessage(message: [String: AnyObject],completion:((Bool) -> Void)? = nil) {
+    private func subscribePendingSubscriptions() {
+        for channel in subscripbedChannels.keys {
+            if !pendingChannelSubscriptionSet.contains(channel)
+                && !openChannelSubscriptionSet.contains(channel) {
+                sendBayeuxSubscribeMessageWithChannel(channel: channel)
+            }
+        }
+    }
+    
+    @objc private func reconnectTimer(timer: Timer) {
+        if isConnected {
+            invalidateReconnectTimer()
+        } else {
+            if shouldRetyrConnection && retryAttemp < maximumRetryAttempts {
+                retryAttemp += 1
+                connect()
+            } else  {
+                invalidateReconnectTimer()
+            }
+            
+        }
+    }
+    
+    private func invalidateReconnectTimer() {
+        reconnectTimer?.invalidate()
+        reconnectTimer = nil
+    }
+    
+    private func reconnect() {
+        guard shouldRetyrConnection && retryAttemp < maximumRetryAttempts else {
+            return
+        }
+        reconnectTimer = Timer.scheduledTimer(timeInterval: retryInterval, target: self, selector: #selector(FayeClient.reconnectTimer(timer:)), userInfo: nil, repeats: false)
+    }
+}
+// MARK: - SRWebSocket
+
+extension FayeClient {
+    func writeMessage(_ message: [String: AnyObject],completion:((Bool) -> Void)? = nil) {
         do {
             let jsonData = try JSONSerialization.data(withJSONObject: message, options: JSONSerialization.WritingOptions(rawValue:0))
             let jsonString = String(data: jsonData,encoding:.utf8)
@@ -166,12 +342,33 @@ extension FayeClient {
         }
     }
     
+    func disconnectFromWebSocket() {
+        webSocket?.delegate = nil
+        webSocket?.close()
+        webSocket = nil
+    }
+    
     func connectToWebSocket() {
         disconnectFromWebSocket()
         
-        let request = URLRequest(u)
+        let request = URLRequest(url: serverURL as URL)
+        webSocket = SRWebSocket(urlRequest: request)
+        webSocket?.delegate = self
+        webSocket?.open()
+    }
+    
+    func didFailWithMessage(message: String) {
+        let error = NSError(domain: FayeClientWebSocketErrorDomain,code: -100, userInfo: [NSLocalizedDescriptionKey:message])
+        delegate?.fayeClient(client: self, didFailWithError: error)
+    }
+    
+    func handleFayeMessages(messages: [[String: AnyObject]]) {
+//        let fayeMessages = messages.map()??
+        //MARK: 没写
     }
 }
+
+// MARK: - SRWebSocketDelegate
 
 extension FayeClient: SRWebSocketDelegate {
     public func webSocketDidOpen(_ webSocket: SRWebSocket!) {
@@ -181,7 +378,7 @@ extension FayeClient: SRWebSocketDelegate {
     public func webSocket(_ webSocket: SRWebSocket!, didFailWithError error: Error!) {
         connected = false
         clearSubscriptions()
-        delegate?.fayeClient(client: self, didFailWithError: error)
+        delegate?.fayeClient(client: self, didFailWithError: error as! NSError)
         reconnect()
     }
     
@@ -200,8 +397,8 @@ extension FayeClient: SRWebSocketDelegate {
             return
         }
         do {
-            if let messages = try JSONSerialization.jsonObject(with: messageData, options: [.allowFragments]) {
-                handleFayeMessages(messages)
+            if let messages = try JSONSerialization.jsonObject(with: messageData, options: [.allowFragments]) as? [[String: AnyObject]] {
+                handleFayeMessages(messages: messages)
 
             }
         } catch let error  {
@@ -210,10 +407,6 @@ extension FayeClient: SRWebSocketDelegate {
     }
     
     public func webSocket(_ webSocket: SRWebSocket!, didReceivePong pongPayload: Data!) {
-        
-    }
-    
-    public func webSocketShouldConvertTextFrame(toString webSocket: SRWebSocket!) -> Bool {
         
     }
     
