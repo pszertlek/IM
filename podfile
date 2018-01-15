@@ -1,12 +1,27 @@
 # Uncomment the next line to define a global platform for your project
 # platform :ios, '9.0'
 
+def pods
+    pod 'AutoReview'
+    pod 'AudioBot'
+    pod 'AsyncDisplayKit'
+    pod 'Appsee'
+    pod 'DeviceGuru'
+    pod 'FXBlurView'
+    pod 'TPKeyboardAvoiding'
+    pod 'pop'
+    pod 'Base64'
+    pod 'SocketRocket'
+    pod 'JPush'
+    pod 'Fabric'
+end
+
 target 'IM' do
   # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
   use_frameworks!
 pod 'CocoaAsyncSocket', '~> 7.6.1'
 pod 'SocketRocket'
-
+pods
   # Pods for IM
 
   target 'IMTests' do

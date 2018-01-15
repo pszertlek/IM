@@ -1,15 +1,74 @@
 PODS:
+  - Appsee (2.3.6)
+  - AsyncDisplayKit (2.2.1):
+    - AsyncDisplayKit/PINRemoteImage (= 2.2.1)
+  - AsyncDisplayKit/Core (2.2.1)
+  - AsyncDisplayKit/PINRemoteImage (2.2.1):
+    - AsyncDisplayKit/Core
+    - PINRemoteImage/iOS (= 3.0.0-beta.8)
+    - PINRemoteImage/PINCache
+  - AudioBot (1.1.1)
+  - AutoReview (1.2.0)
+  - Base64 (1.1.2)
   - CocoaAsyncSocket (7.6.1)
+  - DeviceGuru (3.0.1)
+  - Fabric (1.7.2)
+  - FXBlurView (1.6.4)
+  - JCore (1.1.6)
+  - JPush (3.0.7):
+    - JCore (~> 1.1.6)
+  - PINCache (3.0.1-beta.4):
+    - PINCache/Arc-exception-safe (= 3.0.1-beta.4)
+    - PINCache/Core (= 3.0.1-beta.4)
+  - PINCache/Arc-exception-safe (3.0.1-beta.4):
+    - PINCache/Core
+  - PINCache/Core (3.0.1-beta.4):
+    - PINOperation (= 1.0.3)
+  - PINOperation (1.0.3)
+  - PINRemoteImage/Core (3.0.0-beta.8)
+  - PINRemoteImage/iOS (3.0.0-beta.8):
+    - PINRemoteImage/Core
+  - PINRemoteImage/PINCache (3.0.0-beta.8):
+    - PINCache (= 3.0.1-beta.4)
+    - PINRemoteImage/Core
+  - pop (1.0.10)
   - SocketRocket (0.5.1)
+  - TPKeyboardAvoiding (1.3.2)
 
 DEPENDENCIES:
+  - Appsee
+  - AsyncDisplayKit
+  - AudioBot
+  - AutoReview
+  - Base64
   - CocoaAsyncSocket (~> 7.6.1)
+  - DeviceGuru
+  - Fabric
+  - FXBlurView
+  - JPush
+  - pop
   - SocketRocket
+  - TPKeyboardAvoiding
 
 SPEC CHECKSUMS:
+  Appsee: 8b3eab549f4701befe537cab4aefd175421f6328
+  AsyncDisplayKit: 2234dd8d8770a5ed72936b3f8394bd5a807765f6
+  AudioBot: b7bcf3b18dc2cdccba14d798400c708908ad203d
+  AutoReview: 55e0ad72aab9679dbc53fc604a24964960878e6d
+  Base64: cecfb41a004124895a7bcee567a89bae5a89d49b
   CocoaAsyncSocket: 7eadd3f59e1a6c84e2aefc93e9ff7b55156fe174
+  DeviceGuru: 648c34deb10c6ef59b013ea2922c04c18d8973f0
+  Fabric: 9cd6a848efcf1b8b07497e0b6a2e7d336353ba15
+  FXBlurView: db786c2561cb49a09ae98407f52460096ab8a44f
+  JCore: 18fc8725124f26e55625eaf224659b3a999dcf63
+  JPush: 111b79b8a0169ab8fd4c486dac3ed166ed69293e
+  PINCache: a89c8f609232afac77128557bd12c861844423d7
+  PINOperation: ac23db44796d4a564ecf9b5ea7163510f579b71d
+  PINRemoteImage: c4f9f16932840c597f32e69dd288e10e111a1929
+  pop: 82ca6b068ce9278fd350fd9dd09482a0ce9492e6
   SocketRocket: d57c7159b83c3c6655745cd15302aa24b6bae531
+  TPKeyboardAvoiding: cb69d5ddbe90ce0170e4bc2db1e5e41d4a3ad9a4
 
-PODFILE CHECKSUM: db9b16f754bc0afae536dc896ea324539e1b0764
+PODFILE CHECKSUM: 4b44aa3a5c81cfa170ca42d93cdfec75e8f92b9d
 
 COCOAPODS: 1.3.1

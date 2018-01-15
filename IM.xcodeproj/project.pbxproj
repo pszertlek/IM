@@ -10,6 +10,9 @@
 		183CDB416CBC6BF3CF20A073 /* Pods_IM.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB08058CB891BDC043D0111A /* Pods_IM.framework */; };
 		18A855931FE257E7005F6C89 /* test.js in Resources */ = {isa = PBXBuildFile; fileRef = 18A855921FE257E7005F6C89 /* test.js */; };
 		18B9E0E21FECB2D700816FC1 /* FayeClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B9E0E11FECB2D700816FC1 /* FayeClient.swift */; };
+		18BB1411200C5A40004E904B /* ShortcutType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BB1410200C5A40004E904B /* ShortcutType.swift */; };
+		18BB1413200C5A55004E904B /* ShortcutItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BB1412200C5A55004E904B /* ShortcutItems.swift */; };
+		18BB1416200C7932004E904B /* FreeTimeJob.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BB1415200C7932004E904B /* FreeTimeJob.swift */; };
 		18BDDE041FF1E7FA00FAC7EA /* FayeMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BDDE031FF1E7FA00FAC7EA /* FayeMessage.swift */; };
 		18C8CE4F1FDF74AD009E2895 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C8CE4E1FDF74AD009E2895 /* AppDelegate.swift */; };
 		18C8CE511FDF74AD009E2895 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C8CE501FDF74AD009E2895 /* ViewController.swift */; };
@@ -35,6 +38,9 @@
 /* Begin PBXFileReference section */
 		18A855921FE257E7005F6C89 /* test.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = test.js; sourceTree = "<group>"; };
 		18B9E0E11FECB2D700816FC1 /* FayeClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FayeClient.swift; sourceTree = "<group>"; };
+		18BB1410200C5A40004E904B /* ShortcutType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortcutType.swift; sourceTree = "<group>"; };
+		18BB1412200C5A55004E904B /* ShortcutItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortcutItems.swift; sourceTree = "<group>"; };
+		18BB1415200C7932004E904B /* FreeTimeJob.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreeTimeJob.swift; sourceTree = "<group>"; };
 		18BDDE031FF1E7FA00FAC7EA /* FayeMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FayeMessage.swift; sourceTree = "<group>"; };
 		18C8CE4B1FDF74AD009E2895 /* IM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IM.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		18C8CE4E1FDF74AD009E2895 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -87,6 +93,23 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		18BB140F200C5A31004E904B /* Shortcuts */ = {
+			isa = PBXGroup;
+			children = (
+				18BB1410200C5A40004E904B /* ShortcutType.swift */,
+				18BB1412200C5A55004E904B /* ShortcutItems.swift */,
+			);
+			path = Shortcuts;
+			sourceTree = "<group>";
+		};
+		18BB1414200C790E004E904B /* RunLoop */ = {
+			isa = PBXGroup;
+			children = (
+				18BB1415200C7932004E904B /* FreeTimeJob.swift */,
+			);
+			path = RunLoop;
+			sourceTree = "<group>";
+		};
 		18BDDE021FF1E7E400FAC7EA /* New Group */ = {
 			isa = PBXGroup;
 			children = (
@@ -119,6 +142,8 @@
 		18C8CE4D1FDF74AD009E2895 /* IM */ = {
 			isa = PBXGroup;
 			children = (
+				18BB1414200C790E004E904B /* RunLoop */,
+				18BB140F200C5A31004E904B /* Shortcuts */,
 				18C8CE6F1FDF767B009E2895 /* TYHSocketManager */,
 				18C8CE4E1FDF74AD009E2895 /* AppDelegate.swift */,
 				18C8CE501FDF74AD009E2895 /* ViewController.swift */,
@@ -325,13 +350,35 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-IM/Pods-IM-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/AsyncDisplayKit/AsyncDisplayKit.framework",
+				"${BUILT_PRODUCTS_DIR}/AudioBot/AudioBot.framework",
+				"${BUILT_PRODUCTS_DIR}/AutoReview/AutoReview.framework",
+				"${BUILT_PRODUCTS_DIR}/Base64/Base64.framework",
 				"${BUILT_PRODUCTS_DIR}/CocoaAsyncSocket/CocoaAsyncSocket.framework",
+				"${BUILT_PRODUCTS_DIR}/DeviceGuru/DeviceGuru.framework",
+				"${BUILT_PRODUCTS_DIR}/FXBlurView/FXBlurView.framework",
+				"${BUILT_PRODUCTS_DIR}/PINCache/PINCache.framework",
+				"${BUILT_PRODUCTS_DIR}/PINOperation/PINOperation.framework",
+				"${BUILT_PRODUCTS_DIR}/PINRemoteImage/PINRemoteImage.framework",
 				"${BUILT_PRODUCTS_DIR}/SocketRocket/SocketRocket.framework",
+				"${BUILT_PRODUCTS_DIR}/TPKeyboardAvoiding/TPKeyboardAvoiding.framework",
+				"${BUILT_PRODUCTS_DIR}/pop/pop.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AsyncDisplayKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AudioBot.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AutoReview.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Base64.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CocoaAsyncSocket.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DeviceGuru.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FXBlurView.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PINCache.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PINOperation.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PINRemoteImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SocketRocket.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TPKeyboardAvoiding.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/pop.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -379,11 +426,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				18C8CE511FDF74AD009E2895 /* ViewController.swift in Sources */,
+				18BB1411200C5A40004E904B /* ShortcutType.swift in Sources */,
 				18C8CE711FDF76B2009E2895 /* PNSocketManager.swift in Sources */,
 				18C8CE751FDF845B009E2895 /* NPSocketManager.m in Sources */,
+				18BB1413200C5A55004E904B /* ShortcutItems.swift in Sources */,
 				18B9E0E21FECB2D700816FC1 /* FayeClient.swift in Sources */,
 				18BDDE041FF1E7FA00FAC7EA /* FayeMessage.swift in Sources */,
 				18C8CE4F1FDF74AD009E2895 /* AppDelegate.swift in Sources */,
+				18BB1416200C7932004E904B /* FreeTimeJob.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
