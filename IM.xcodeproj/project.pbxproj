@@ -14,6 +14,7 @@
 		18BB1413200C5A55004E904B /* ShortcutItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BB1412200C5A55004E904B /* ShortcutItems.swift */; };
 		18BB1416200C7932004E904B /* FreeTimeJob.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BB1415200C7932004E904B /* FreeTimeJob.swift */; };
 		18BDDE041FF1E7FA00FAC7EA /* FayeMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BDDE031FF1E7FA00FAC7EA /* FayeMessage.swift */; };
+		18C56756200EEC53005F6CAE /* PNTabbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C56755200EEC53005F6CAE /* PNTabbar.swift */; };
 		18C8CE4F1FDF74AD009E2895 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C8CE4E1FDF74AD009E2895 /* AppDelegate.swift */; };
 		18C8CE511FDF74AD009E2895 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C8CE501FDF74AD009E2895 /* ViewController.swift */; };
 		18C8CE541FDF74AD009E2895 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18C8CE521FDF74AD009E2895 /* Main.storyboard */; };
@@ -42,6 +43,7 @@
 		18BB1412200C5A55004E904B /* ShortcutItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortcutItems.swift; sourceTree = "<group>"; };
 		18BB1415200C7932004E904B /* FreeTimeJob.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreeTimeJob.swift; sourceTree = "<group>"; };
 		18BDDE031FF1E7FA00FAC7EA /* FayeMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FayeMessage.swift; sourceTree = "<group>"; };
+		18C56755200EEC53005F6CAE /* PNTabbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PNTabbar.swift; sourceTree = "<group>"; };
 		18C8CE4B1FDF74AD009E2895 /* IM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IM.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		18C8CE4E1FDF74AD009E2895 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		18C8CE501FDF74AD009E2895 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -119,6 +121,14 @@
 			name = "New Group";
 			sourceTree = "<group>";
 		};
+		18C56754200EEC03005F6CAE /* TabbarController */ = {
+			isa = PBXGroup;
+			children = (
+				18C56755200EEC53005F6CAE /* PNTabbar.swift */,
+			);
+			path = TabbarController;
+			sourceTree = "<group>";
+		};
 		18C8CE421FDF74AD009E2895 = {
 			isa = PBXGroup;
 			children = (
@@ -142,6 +152,7 @@
 		18C8CE4D1FDF74AD009E2895 /* IM */ = {
 			isa = PBXGroup;
 			children = (
+				18C56754200EEC03005F6CAE /* TabbarController */,
 				18BB1414200C790E004E904B /* RunLoop */,
 				18BB140F200C5A31004E904B /* Shortcuts */,
 				18C8CE6F1FDF767B009E2895 /* TYHSocketManager */,
@@ -426,6 +437,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				18C8CE511FDF74AD009E2895 /* ViewController.swift in Sources */,
+				18C56756200EEC53005F6CAE /* PNTabbar.swift in Sources */,
 				18BB1411200C5A40004E904B /* ShortcutType.swift in Sources */,
 				18C8CE711FDF76B2009E2895 /* PNSocketManager.swift in Sources */,
 				18C8CE751FDF845B009E2895 /* NPSocketManager.m in Sources */,

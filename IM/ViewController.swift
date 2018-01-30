@@ -9,12 +9,19 @@
 import UIKit
 import Foundation
 import JavaScriptCore
+
+enum sss: Int {
+    case a = 1,b,c,d,e
+    case f = 10
+}
 class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        testJs()
+
+        let s = sss.a
+        print(s)
     }
 
     override func didReceiveMemoryWarning() {
@@ -23,7 +30,7 @@ class ViewController: UIViewController {
     }
     
     func testJs() {
-        let jsPath = Bundle.main.path(forResource: "test", ofType: "js")
+        let jsPath = Bundle.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 .path(forResource: "test", ofType: "js")
         let jsContent =  try! NSString.init(contentsOfFile: jsPath!, encoding: String.Encoding.utf8.rawValue)
         let context = JSContext()
         context?.evaluateScript(jsContent as String!)
