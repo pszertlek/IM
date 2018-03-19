@@ -30,7 +30,7 @@ class ViewController: UIViewController {
     }
     
     func testJs() {
-        let jsPath = Bundle.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 .path(forResource: "test", ofType: "js")
+        let jsPath = Bundle.main.path(forResource: "test", ofType: "js")
         let jsContent =  try! NSString.init(contentsOfFile: jsPath!, encoding: String.Encoding.utf8.rawValue)
         let context = JSContext()
         context?.evaluateScript(jsContent as String!)

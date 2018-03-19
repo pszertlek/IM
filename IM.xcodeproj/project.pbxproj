@@ -23,6 +23,8 @@
 		18C8CE641FDF74AE009E2895 /* IMTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C8CE631FDF74AE009E2895 /* IMTests.swift */; };
 		18C8CE711FDF76B2009E2895 /* PNSocketManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C8CE701FDF76B2009E2895 /* PNSocketManager.swift */; };
 		18C8CE751FDF845B009E2895 /* NPSocketManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C8CE741FDF845B009E2895 /* NPSocketManager.m */; };
+		18D401BB203FBAB300E75969 /* YepFayeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D401BA203FBAB300E75969 /* YepFayeService.swift */; };
+		18D401BD203FBF5E00E75969 /* YepService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D401BC203FBF5E00E75969 /* YepService.swift */; };
 		40AE336E82D5165EC60534C4 /* Pods_IMTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7F1655320173C40109D2143 /* Pods_IMTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -58,6 +60,8 @@
 		18C8CE721FDF845B009E2895 /* IM-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "IM-Bridging-Header.h"; sourceTree = "<group>"; };
 		18C8CE731FDF845B009E2895 /* NPSocketManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NPSocketManager.h; sourceTree = "<group>"; };
 		18C8CE741FDF845B009E2895 /* NPSocketManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NPSocketManager.m; sourceTree = "<group>"; };
+		18D401BA203FBAB300E75969 /* YepFayeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YepFayeService.swift; sourceTree = "<group>"; };
+		18D401BC203FBF5E00E75969 /* YepService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YepService.swift; sourceTree = "<group>"; };
 		860C02E0DA575AA959A134A3 /* Pods-IMTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IMTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-IMTests/Pods-IMTests.release.xcconfig"; sourceTree = "<group>"; };
 		87D482CBC606DA1938A569EE /* Pods-IM.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IM.debug.xcconfig"; path = "Pods/Target Support Files/Pods-IM/Pods-IM.debug.xcconfig"; sourceTree = "<group>"; };
 		B7D35BDF71A8A3845D19604D /* Pods-IM.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IM.release.xcconfig"; path = "Pods/Target Support Files/Pods-IM/Pods-IM.release.xcconfig"; sourceTree = "<group>"; };
@@ -117,6 +121,8 @@
 			children = (
 				18B9E0E11FECB2D700816FC1 /* FayeClient.swift */,
 				18BDDE031FF1E7FA00FAC7EA /* FayeMessage.swift */,
+				18D401BA203FBAB300E75969 /* YepFayeService.swift */,
+				18D401BC203FBF5E00E75969 /* YepService.swift */,
 			);
 			name = "New Group";
 			sourceTree = "<group>";
@@ -437,10 +443,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				18C8CE511FDF74AD009E2895 /* ViewController.swift in Sources */,
+				18D401BB203FBAB300E75969 /* YepFayeService.swift in Sources */,
 				18C56756200EEC53005F6CAE /* PNTabbar.swift in Sources */,
 				18BB1411200C5A40004E904B /* ShortcutType.swift in Sources */,
 				18C8CE711FDF76B2009E2895 /* PNSocketManager.swift in Sources */,
 				18C8CE751FDF845B009E2895 /* NPSocketManager.m in Sources */,
+				18D401BD203FBF5E00E75969 /* YepService.swift in Sources */,
 				18BB1413200C5A55004E904B /* ShortcutItems.swift in Sources */,
 				18B9E0E21FECB2D700816FC1 /* FayeClient.swift in Sources */,
 				18BDDE041FF1E7FA00FAC7EA /* FayeMessage.swift in Sources */,
